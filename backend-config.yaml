@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: backend-config
 data:
-  mongo-url: backend-service
+  backend-url: backend-service

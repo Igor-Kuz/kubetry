@@ -19,6 +19,12 @@ spec:
         image: igorkuz/frontend:1.0 
         ports:
         - containerPort: 8080 #3000
+        env:  
+        - name: Backend_URL
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: backend-url
 
 ---
 apiVersion: v1
