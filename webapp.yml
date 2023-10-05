@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp-deployment
+  name: webapp-frontend
   labels:
     app: webapp
 spec:
@@ -17,26 +17,25 @@ spec:
       containers:
       - name: webapp
         image: igorkuz/frontend:1.0 
+        imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080 #3000
-        #env:  
-        #- name: Backend_URL
-         # valueFrom:
-        #    configMapKeyRef:
-       #       name: backend-config
-      #        key: backend-url
+        - containerPort: 80 
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "100Mi"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp-service
+  name: webapp-frontend
 spec:
   type: NodePort
   selector:
     app: webapp
   ports:
-    - protocol: TCP
-      port: 8080 #3000
-      targetPort: 8080 #3000
-      nodePort: 30100
+    - protocol: TCP #http?
+      port: 80
+      targetPort: 80 
+      # nodePort: 30100

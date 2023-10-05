@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: backend-config
+  name: mysql-config
 data:
-  backend-url: backend-service
+  mysql-url: mysql-service
